@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 export function Lights() {
-	const white = "#fff";
-
-	const [Glow, SetGlow] = useState("false");
+	const [ClassRed, SetClassRed] = useState("0");
+	const [ClassYellow, SetClassYellow] = useState("0");
+	const [ClassGreen, SetClassGreen] = useState("0");
 
 	let boxStyles = {
 		background: "black",
@@ -18,8 +18,7 @@ export function Lights() {
 		width: "60px",
 		background: "red",
 		margin: "auto",
-		borderRadius: "100%",
-		boxShadow: `0 0 10px 10px ${white}`
+		borderRadius: "100%"
 	};
 
 	let lightStylesyellow = {
@@ -37,15 +36,50 @@ export function Lights() {
 		borderRadius: "100%"
 	};
 
-	function ChangeColor() {
-		SetGlow("yellow");
+	function ChangeColorRed() {
+		if (ClassRed == "0") {
+			SetClassRed("selected");
+			SetClassYellow("0");
+			SetClassGreen("0");
+		} else {
+			SetClassRed("0");
+		}
+	}
+
+	function ChangeColorYellow() {
+		if (ClassYellow == "0") {
+			SetClassYellow("selected");
+			SetClassGreen("0");
+			SetClassRed("0");
+		} else {
+			SetClassYellow("0");
+		}
+	}
+
+	function ChangeColorGreen() {
+		if (ClassGreen == "0") {
+			SetClassGreen("selected");
+			SetClassRed("0");
+			SetClassYellow("0");
+		} else {
+			SetClassGreen("0");
+		}
 	}
 
 	return (
 		<div style={boxStyles}>
-			<div style={lightStylesred} onClick={ChangeColor}></div>
-			<div style={lightStylesyellow}></div>
-			<div style={lightStylesgreen}></div>
+			<div
+				className={ClassRed}
+				style={lightStylesred}
+				onClick={ChangeColorRed}></div>
+			<div
+				className={ClassYellow}
+				style={lightStylesyellow}
+				onClick={ChangeColorYellow}></div>
+			<div
+				className={ClassGreen}
+				style={lightStylesgreen}
+				onClick={ChangeColorGreen}></div>
 		</div>
 	);
 }
